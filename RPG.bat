@@ -1,24 +1,33 @@
 @echo off
+
+setlocal EnableExtensions
+
 title Small RPG
+
 color 7
-if "%1" neq "" (goto %1)
+
 :Menu
 cls
 echo 1.Start
 echo 2.Instructions
 echo 3.Exit
+
 set /p answer=Type the number of your option and press enter.
-if %answer%==1 goto 'start_1'
-if %answer%==2 goto 'instructions'
-if %answer%==3 goto 'Exit'
+
+if %answer%==1 ( 
+	goto start_1
+) else if %answer%==2 (
+	goto instructions 
+) else if %answer%==3 ( 
+	goto  Exit (
+) else  echo Invalid input. 
 pause
-:FIX
-goto 'instructions'
-:'Exit'
+goto Menu
+:Exit
 echo Thanks for playing.
 pause
 exit /b
-:'instructions'
+:instructions
 echo .
 echo Wellcome to Small RPG, this is a simple Prompt-RPG,
 echo I hope you enjoy it, this is a test project.
@@ -31,7 +40,9 @@ echo in every choice of the game)
 echo .
 pause
 goto Menu
-:'start_1'
+:start_1
+
+cls
 echo .
 echo You are a mage, in a quest for the Mage Guild AND for the Imperial Mage School,
 echo they have sent you a imperial letter, and you must meet up with the others at
@@ -39,8 +50,10 @@ echo the secret location that is written on your letter,
 echo you have 3 more days to arrive, but the sooner you get there, the better.
 echo .
 pause
-goto 'Start_2'
-:'start_2'
+goto Start_2
+
+:start_2
+
 cls
 echo .
 echo You are leaving the current village (a nameless one), but the chief was nice to
@@ -50,37 +63,46 @@ echo where you want to go, one is shorter, but more dangerous, the other is twic
 echo long, but is a imperial road, with patrols, way safer than the other path.
 echo Will you take the SAFE path or the QUICK path?
 echo .
+
 set /p answer=Which path will you take?
-if %answer%==SAFE goto 'SAFE'
-if %answer%==QUICK goto 'QUICK'
-:FIX2
-goto 'start_2'
-:'SAFE'
+if /i %answer%==SAFE ( 
+	goto SAFE
+) else if /i %answer%==QUICK (
+	goto QUICK
+) else ( echo Invalid input. )
+pause
+goto start_2
+
+:SAFE
+
+cls
 echo .
 echo Better safe than sorry, you decide that if they requested your help because of
 echo magic skills, you better save up mana for what will come, you can never know
 echo what will you found in the way (hopefully not a Dragon, J/K).
 echo .
 pause
-goto 'IMPEROAD1'
-:FIX3
-goto 'SAFE'
-:'QUICK'
+goto IMPEROAD1
+
+:QUICK
+
 echo .
 echo The sooner you get there, the better. If they requested your help, you better
 echo hurry, you don't know how bad the situation can be (let's hope the risk is 
 echo worth it).
 echo .
 pause
-goto 'WOODS1'
-:FIX4
-goto 'QUICK'
-:'IMPEROAD1'
+goto WOODS1
+
+:IMPEROAD1
+
 echo .
 echo I SHOULD FINISH THIS!
 pause
 goto Menu
-:'WOODS1'
+
+:WOODS1
+
 echo .
 echo I SHOULD FINISH THIS!
 pause
